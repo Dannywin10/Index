@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>واجهة محل الرهونات</title>
+    <link rel="stylesheet" href="style.css">
+<style type="text/css" id="dcoder_stylesheet">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1, h2 {
+    color: #2a5298;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+button {
+    background-color: #2a5298;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1e3c72;
+}
+
+.hidden {
+    display: none;
+}
+
+#promoMessage, #copyMessage {
+    margin-top: 15px;
+    font-size: 14px;
+    color: green;
+}
+
+#secretCode {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}</style></head>
+<body>
+    <div id="promo-container" class="container">
+        <h1>مرحبًا بكم في محل الرهونات</h1>
+        <p>أدخل رمز العرض الترويجي للوصول إلى الرمز السري:</p>
+        <input type="text" id="promoCode" placeholder="أدخل الرمز">
+        <button onclick="checkPromoCode()">أرسل</button>
+        <p id="promoMessage" class="hidden"></p>
+    </div>
+
+    <!-- الواجهة بعد إدخال الرمز الصحيح -->
+    <div id="code-container" class="container hidden">
+        <h2>كود المليار دينار جزائري</h2>
+        <p id="secretCode">26ENX</p>
+        <button onclick="copyCode()">Copy the code</button>
+        <p id="copyMessage" class="hidden">تم نسخ الكود!</p>
+    </div>
+
+    <script src="script.js"></script>
+
+<script type="text/javascript" id="dcoder_script">function checkPromoCode() {
+    const promoCode = document.getElementById('promoCode').value;
+    const promoMessage = document.getElementById('promoMessage');
+    
+    // التحقق من صحة الرمز المدخل
+    if (promoCode === "Dannywin10") {
+        document.getElementById('promo-container').classList.add('hidden');
+        document.getElementById('code-container').classList.remove('hidden');
+    } else {
+        promoMessage.textContent = "الرمز غير صحيح. حاول مرة أخرى.";
+        promoMessage.classList.remove('hidden');
+        promoMessage.style.color = "red";
+    }
+}
+
+function copyCode() {
+    // نسخ الكود إلى الحافظة
+    const secretCode = document.getElementById('secretCode').textContent;
+    const copyMessage = document.getElementById('copyMessage');
+    
+    navigator.clipboard.writeText(secretCode).then(() => {
+        copyMessage.textContent = "تم نسخ الكود!";
+        copyMessage.classList.remove('hidden');
+    }).catch(err => {
+        copyMessage.textContent = "خطأ أثناء النسخ!";
+        copyMessage.classList.remove('hidden');
+        copyMessage.style.color = "red";
+    });
+}</script></body></html>
